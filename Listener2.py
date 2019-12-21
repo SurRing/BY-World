@@ -6,6 +6,7 @@ from pynput.keyboard import Key
 
 move_list = ['w', 'a', 's', 'd']
 
+
 class Listener:
     def __init__(self):
         self.press_list = []

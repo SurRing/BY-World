@@ -2,5 +2,5 @@
 # _*_ coding:utf-8 _*
 
 
-SIZE = 10
+SIZE = 20
 
