@@ -16,8 +16,8 @@ def rotate(matrix):#左旋
 
 class MapDealer:
 
-    def __init__(self, msg_log):
-        self.msg_log = msg_log
+    def __init__(self, mainHandler):
+        self.mainHandler = mainHandler
         self.map = [[Block(x, y) for y in range(SIZE)] for x in range(SIZE)]
         self.count = 0
         self.creatures = []
@@ -30,7 +30,6 @@ class MapDealer:
         self.creatures.append(creature)
 
     def run(self):
-        self.count += 1
         for creature in self.creatures:
             creature.run(self.count)
 
@@ -44,14 +43,14 @@ class MapDealer:
 
     def move(self, origin, target):
         if not (0<=target.x<=SIZE-1 and 0<=target.y<=SIZE-1):
-            self.msg_log.append("越界")
+            self.mainHandler.append_msg("越界")
             return False
         elif self.map[target.x][target.y].contain:
-            self.msg_log.append("目标位置存在物体")
+            self.mainHandler.append_msg("目标位置存在物体")
             return False
         else:
             self.map[target.x][target.y].enter(self.map[origin.x][origin.y].leave())
-            self.msg_log.append("%s向%s移动了" %(self.map[target.x][target.y].contain.name, target))
+            self.mainHandler.append_msg("%s向%s移动了" %(self.map[target.x][target.y].contain.name, target))
             return True
 
 

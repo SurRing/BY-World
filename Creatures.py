@@ -10,9 +10,10 @@ class Creature:
 
     def __init__(self, position, mapDealer):
         self.flag = 0
+        self.action_time = 1
         self.mapDealer = mapDealer
         self.position = position
-        self.img = "1"
+        self.img = "\033[36m1\033[0m"
         self.name = "某生物"
 
     def born(self):
@@ -29,7 +30,7 @@ class PeaceCreature(Creature):
         super().__init__(position, mapDealer)
 
     def run(self, count):
-        if self.flag >= count:return
-        act = random.choice(['w', 'a', 's', 'd'])
-        self.mapDealer.move(self.position, self.position+Map.move_dict[act])
-        self.flag+=1
+        while self.flag < count:
+            act = random.choice(['w', 'a', 's', 'd'])
+            self.mapDealer.move(self.position, self.position+Map.move_dict[act])
+            self.flag += self.action_time

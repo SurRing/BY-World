@@ -4,8 +4,7 @@
 import pynput
 from pynput.keyboard import Key
 
-move_list = ['w', 'a', 's', 'd']
-
+action_dict = {"w": "w", "a": "a", "s": "s", "d": "d", "b": "bag"}
 
 class Listener:
     def __init__(self):
@@ -20,8 +19,8 @@ class Listener:
 
     def on_press(self, key):
         try:
-            if key.char in move_list:
-                self.press_list.append(key.char)
+            if key.char in action_dict.keys():
+                self.press_list.append(action_dict[key.char])
                 return False
         except:
             self.press_list.append(key)
